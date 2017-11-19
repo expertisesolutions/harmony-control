@@ -1,0 +1,24 @@
+
+import testing ;
+
+project harmony ;
+
+alias harmony
+  : /boost_headers//boost_headers /http-client//http-client
+    /json//json
+  : :
+  : <include>include
+   <toolset>gcc:<cxxflags>-std=c++17
+   <toolset>gcc:<cxxflags>-Wno-deprecated-declarations
+   <toolset>clang:<cxxflags>-stdlib=libc++
+   <toolset>clang:<linkflags>-stdlib=libc++
+   <toolset>clang:<cxxflags>-std=c++17
+   <toolset>clang:<cxxflags>-Wno-unused-local-typedef
+   <toolset>clang:<cxxflags>-Wno-deprecated-declarations
+  ;
+
+
+alias tests :
+ [ testing.run tests/test1.cpp harmony /openssl//openssl ]
+ ;
+explicit tests ;
